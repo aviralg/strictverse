@@ -8,13 +8,13 @@ DOCKER_RUN := docker run --rm -p 8000:8080 -v $(CURDIR):/home/aviral/strictverse
 
 download:
 	mkdir -p $(DOWNLOAD_DIR)
-	#wget -P $(DOWNLOAD_DIR) https://cran.r-project.org/src/contrib/Archive/readr/readr_1.4.0.tar.gz
-	#wget -P $(DOWNLOAD_DIR) https://cran.r-project.org/src/contrib/Archive/stringr/stringr_1.4.0.tar.gz
-	#wget -P $(DOWNLOAD_DIR) https://cran.r-project.org/src/contrib/Archive/purrr/purrr_0.3.4.tar.gz
-	#wget -P $(DOWNLOAD_DIR) https://cran.r-project.org/src/contrib/Archive/tidyr/tidyr_1.1.3.tar.gz
-	#wget -P $(DOWNLOAD_DIR) https://cran.r-project.org/src/contrib/Archive/ggplot2/ggplot2_3.3.5.tar.gz
-	#wget -P $(DOWNLOAD_DIR) https://cran.r-project.org/src/contrib/Archive/dplyr/dplyr_1.0.7.tar.gz
-	#wget -P $(DOWNLOAD_DIR) https://cran.r-project.org/src/contrib/Archive/tibble/tibble_3.1.2.tar.gz
+	wget -P $(DOWNLOAD_DIR) https://cran.r-project.org/src/contrib/Archive/readr/readr_1.4.0.tar.gz
+	wget -P $(DOWNLOAD_DIR) https://cran.r-project.org/src/contrib/Archive/stringr/stringr_1.4.0.tar.gz
+	wget -P $(DOWNLOAD_DIR) https://cran.r-project.org/src/contrib/Archive/purrr/purrr_0.3.4.tar.gz
+	wget -P $(DOWNLOAD_DIR) https://cran.r-project.org/src/contrib/Archive/tidyr/tidyr_1.1.3.tar.gz
+	wget -P $(DOWNLOAD_DIR) https://cran.r-project.org/src/contrib/Archive/ggplot2/ggplot2_3.3.5.tar.gz
+	wget -P $(DOWNLOAD_DIR) https://cran.r-project.org/src/contrib/Archive/dplyr/dplyr_1.0.7.tar.gz
+	wget -P $(DOWNLOAD_DIR) https://cran.r-project.org/src/contrib/Archive/tibble/tibble_3.1.2.tar.gz
 	wget -P $(DOWNLOAD_DIR) https://cran.r-project.org/src/contrib/Archive/forcats/forcats_0.5.1.tar.gz
 
 extract:
@@ -24,14 +24,14 @@ extract:
 signature:
 	mkdir -p $(SIGNATURE_DIR)
 	docker pull aviralgoel/oopsla-2021-r-promisebreaker:latest
-	#$(DOCKER_RUN) "cd ~/promisebreaker-experiment; echo readr > experiment/profile/trace/index/corpus-small;   make synthesize-signatures; cp experiment/profile/signature/signature+force+effect+reflection/readr ~/strictverse/$(SIGNATURE_DIR)"
-	#$(DOCKER_RUN) "cd ~/promisebreaker-experiment; echo stringr > experiment/profile/trace/index/corpus-small; make synthesize-signatures; cp experiment/profile/signature/signature+force+effect+reflection/stringr ~/strictverse/$(SIGNATURE_DIR)"
-	#$(DOCKER_RUN) "cd ~/promisebreaker-experiment; echo purrr > experiment/profile/trace/index/corpus-small;   make synthesize-signatures; cp experiment/profile/signature/signature+force+effect+reflection/purrr ~/strictverse/$(SIGNATURE_DIR)"
-	#$(DOCKER_RUN) "cd ~/promisebreaker-experiment; echo tidyr > experiment/profile/trace/index/corpus-small;   make synthesize-signatures; cp experiment/profile/signature/signature+force+effect+reflection/tidyr ~/strictverse/$(SIGNATURE_DIR)"
-	#$(DOCKER_RUN) "cd ~/promisebreaker-experiment; echo ggplot2 > experiment/profile/trace/index/corpus-small; make synthesize-signatures; cp experiment/profile/signature/signature+force+effect+reflection/ggplot2 ~/strictverse/$(SIGNATURE_DIR)"
-	#$(DOCKER_RUN) "cd ~/promisebreaker-experiment; echo dplyr > experiment/profile/trace/index/corpus-small;   make synthesize-signatures; cp experiment/profile/signature/signature+force+effect+reflection/dplyr ~/strictverse/$(SIGNATURE_DIR)"
+	$(DOCKER_RUN) "cd ~/promisebreaker-experiment; echo readr > experiment/profile/trace/index/corpus-small;   make synthesize-signatures; cp experiment/profile/signature/signature+force+effect+reflection/readr ~/strictverse/$(SIGNATURE_DIR)"
+	$(DOCKER_RUN) "cd ~/promisebreaker-experiment; echo stringr > experiment/profile/trace/index/corpus-small; make synthesize-signatures; cp experiment/profile/signature/signature+force+effect+reflection/stringr ~/strictverse/$(SIGNATURE_DIR)"
+	$(DOCKER_RUN) "cd ~/promisebreaker-experiment; echo purrr > experiment/profile/trace/index/corpus-small;   make synthesize-signatures; cp experiment/profile/signature/signature+force+effect+reflection/purrr ~/strictverse/$(SIGNATURE_DIR)"
+	$(DOCKER_RUN) "cd ~/promisebreaker-experiment; echo tidyr > experiment/profile/trace/index/corpus-small;   make synthesize-signatures; cp experiment/profile/signature/signature+force+effect+reflection/tidyr ~/strictverse/$(SIGNATURE_DIR)"
+	$(DOCKER_RUN) "cd ~/promisebreaker-experiment; echo ggplot2 > experiment/profile/trace/index/corpus-small; make synthesize-signatures; cp experiment/profile/signature/signature+force+effect+reflection/ggplot2 ~/strictverse/$(SIGNATURE_DIR)"
+	$(DOCKER_RUN) "cd ~/promisebreaker-experiment; echo dplyr > experiment/profile/trace/index/corpus-small;   make synthesize-signatures; cp experiment/profile/signature/signature+force+effect+reflection/dplyr ~/strictverse/$(SIGNATURE_DIR)"
 	$(DOCKER_RUN) "cd ~/promisebreaker-experiment; echo tibble > experiment/profile/trace/index/corpus-small;  make synthesize-signatures; cp experiment/profile/signature/signature+force+effect+reflection/tibble ~/strictverse/$(SIGNATURE_DIR)"
-	#$(DOCKER_RUN) "cd ~/promisebreaker-experiment; echo forcats > experiment/profile/trace/index/corpus-small; make synthesize-signatures; cp experiment/profile/signature/signature+force+effect+reflection/forcats ~/strictverse/$(SIGNATURE_DIR)"
+	$(DOCKER_RUN) "cd ~/promisebreaker-experiment; echo forcats > experiment/profile/trace/index/corpus-small; make synthesize-signatures; cp experiment/profile/signature/signature+force+effect+reflection/forcats ~/strictverse/$(SIGNATURE_DIR)"
 
 sugar:
 	mkdir -p $(SUGAR_DIR)
@@ -56,3 +56,4 @@ desugar:
 	desugar.R forcats $(SUGAR_DIR) $(DESUGAR_DIR)
 
 .PHONY: download extract signature sugar desugar
+
