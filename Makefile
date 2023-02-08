@@ -19,7 +19,7 @@ download:
 
 extract:
 	mkdir -p $(EXTRACT_DIR)
-	tar -zxvf $(DOWNLOAD_DIR)/*.tar.gz --directory $(EXTRACT_DIR)
+	for f in $(DOWNLOAD_DIR)/*.tar.gz; do tar -zxvf "$f" --directory $(EXTRACT_DIR); done
 
 signature:
 	mkdir -p $(SIGNATURE_DIR)
