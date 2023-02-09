@@ -114,7 +114,7 @@
 #'
 #' @export
 #' @seealso [c_across()] for a function that returns a vector
-across <- function(.cols = everything(),, ..., .names = NULL) {
+across <- function(.cols = everything(), .fns = NULL, ..., .names = NULL) {
     force(.fns)
   setup <- across_setup(
     {{ .cols }},
