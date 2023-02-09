@@ -1,0 +1,11 @@
+[1m<rate: delay>[22m
+Attempts: 0/Inf
+Fields:
+[1m[90m * [39m[22m`pause`: 20.00
+
+[1m<rate: backoff>[22m
+Attempts: 0/3
+Fields:
+[1m[90m * [39m[22m`pause_base`: 1
+[1m[90m * [39m[22m`pause_cap`: 60
+[1m[90m * [39m[22m`pause_min`: 1
