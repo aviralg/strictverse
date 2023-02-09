@@ -3,8 +3,12 @@ EXTRACT_DIR  := extract
 SIGNATURE_DIR := signature
 SUGAR_DIR := sugar
 DESUGAR_DIR := desugar
+PACKAGES := readr stringr purrr tidyr ggplot2 dplyr tibble forcats
 
 DOCKER_RUN := docker run --rm -p 8000:8080 -v $(CURDIR):/home/aviral/strictverse -it --entrypoint /bin/bash aviralgoel/oopsla-2021-r-promisebreaker:latest -c
+
+R := R
+R_VANILLA := ~/promisebreaker-experiment/dependency/R-vanilla/bin/R
 
 download:
 	mkdir -p $(DOWNLOAD_DIR)
@@ -35,25 +39,23 @@ signature:
 
 sugar:
 	mkdir -p $(SUGAR_DIR)
-	#sugar.R readr $(EXTRACT_DIR) $(SIGNATURE_DIR) $(SUGAR_DIR)
-	#sugar.R stringr $(EXTRACT_DIR) $(SIGNATURE_DIR) $(SUGAR_DIR)
-	#sugar.R purrr $(EXTRACT_DIR) $(SIGNATURE_DIR) $(SUGAR_DIR)
-	#sugar.R tidyr $(EXTRACT_DIR) $(SIGNATURE_DIR) $(SUGAR_DIR)
-	#sugar.R ggplot2 $(EXTRACT_DIR) $(SIGNATURE_DIR) $(SUGAR_DIR)
-	#sugar.R dplyr $(EXTRACT_DIR) $(SIGNATURE_DIR) $(SUGAR_DIR)
-	#sugar.R tibble $(EXTRACT_DIR) $(SIGNATURE_DIR) $(SUGAR_DIR)
-	sugar.R forcats $(EXTRACT_DIR) $(SIGNATURE_DIR) $(SUGAR_DIR)
+	for package in $(PACKAGES); do \
+		$(R) --file=sugar.R --args $$package $(EXTRACT_DIR) $(SIGNATURE_DIR) $(SUGAR_DIR); \
+	done;
 
 desugar:
 	mkdir -p $(DESUGAR_DIR)
-	#desugar.R readr $(SUGAR_DIR) $(DESUGAR_DIR)
-	#desugar.R stringr $(SUGAR_DIR) $(DESUGAR_DIR)
-	#desugar.R purrr $(SUGAR_DIR) $(DESUGAR_DIR)
-	#desugar.R tidyr $(SUGAR_DIR) $(DESUGAR_DIR)
-	#desugar.R ggplot2 $(SUGAR_DIR) $(DESUGAR_DIR)
-	#desugar.R dplyr $(SUGAR_DIR) $(DESUGAR_DIR)
-	#desugar.R tibble $(SUGAR_DIR) $(DESUGAR_DIR)
-	desugar.R forcats $(SUGAR_DIR) $(DESUGAR_DIR)
+	for package in $(PACKAGES); do \
+		$(R) --file=desugar.R --args $$package $(SUGAR_DIR) $(DESUGAR_DIR); \
+	done;
 
-.PHONY: download extract signature sugar desugar
+test:
+	for package in $(PACKAGES); do \
+		$(R_VANILLA) --file=test.R --args $(EXTRACT_DIR) $(RESULT_DIR) $$package lazy.fst; \
+		$(R_VANILLA) --file=test.R --args $(DESUGAR_DIR) $(RESULT_DIR) $$package strict.fst; \
+	done;
 
+analyze:
+	analyze.R $(RESULT_DIR)
+
+.PHONY: download extract signature sugar desugar test analyze
