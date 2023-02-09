@@ -1,3 +1,5 @@
+install.packages("decor")
+
 library(fs)
 library(purrr)
 library(tibble)
@@ -71,8 +73,10 @@ test <- function(pkg_dir, res_file) {
 main <- function() {
     args <- commandArgs(trailingOnly=TRUE)
 
-    if (length(args) != 2) {
-        stop("Expected two arguments")
+    print(args)
+
+    if (length(args) != 4) {
+        stop("Expected four arguments")
     }
 
     src_dir <- path_expand(args[1])

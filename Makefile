@@ -3,6 +3,7 @@ EXTRACT_DIR  := extract
 SIGNATURE_DIR := signature
 SUGAR_DIR := sugar
 DESUGAR_DIR := desugar
+RESULT_DIR := result
 PACKAGES := readr stringr purrr tidyr ggplot2 dplyr tibble forcats
 
 DOCKER_RUN := docker run --rm -p 8000:8080 -v $(CURDIR):/home/aviral/strictverse -it --entrypoint /bin/bash aviralgoel/oopsla-2021-r-promisebreaker:latest -c
@@ -50,9 +51,11 @@ desugar:
 	done;
 
 test:
+	#$(DOCKER_RUN) "$(R_VANILLA) -e 'install.packages(\"decor\");'"
+	mkdir -p $(RESULT_DIR)
 	for package in $(PACKAGES); do \
-		$(R_VANILLA) --file=test.R --args $(EXTRACT_DIR) $(RESULT_DIR) $$package lazy.fst; \
-		$(R_VANILLA) --file=test.R --args $(DESUGAR_DIR) $(RESULT_DIR) $$package strict.fst; \
+		$(DOCKER_RUN) "$(R_VANILLA) --file=/home/aviral/strictverse/test.R --args /home/aviral/strictverse/$(EXTRACT_DIR) /home/aviral/strictverse/$(RESULT_DIR) $$package lazy.fst"; \
+		$(DOCKER_RUN) "$(R_VANILLA) --file=/home/aviral/strictverse/test.R --args /home/aviral/strictverse/$(DESUGAR_DIR) /home/aviral/strictverse/$(RESULT_DIR) $$package strict.fst"; \
 	done;
 
 analyze:
