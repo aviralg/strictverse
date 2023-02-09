@@ -1,0 +1,26 @@
+#' The zero grob draws nothing and has zero size.
+#'
+#' @keywords internal
+#' @export
+zeroGrob <- function() .zeroGrob
+
+# Will get assigned in .onLoad()
+.zeroGrob <- NULL
+
+#' @export
+#' @method widthDetails zeroGrob
+widthDetails.zeroGrob <- function(x) unit(0, "cm")
+#' @export
+#' @method heightDetails zeroGrob
+heightDetails.zeroGrob <- function(x) unit(0, "cm")
+#' @export
+#' @method grobWidth zeroGrob
+grobWidth.zeroGrob <- function(strict x) unit(0, "cm")
+#' @export
+#' @method grobHeight zeroGrob
+grobHeight.zeroGrob <- function(strict x) unit(0, "cm")
+#' @export
+#' @method drawDetails zeroGrob
+drawDetails.zeroGrob <- function(strict x, recording) {}
+
+is.zero <- function(strict x) is.null(x) || inherits(x, "zeroGrob")

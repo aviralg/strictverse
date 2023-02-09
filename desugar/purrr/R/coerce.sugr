@@ -1,0 +1,11 @@
+# Used internally by map and flatten.
+# Exposed here for testing
+coerce <- function(strict x, strict type) {
+  .Call(coerce_impl, x, type)
+}
+
+coerce_lgl <- function(strict x) coerce(x, "logical")
+coerce_int <- function(strict x) coerce(x, "integer")
+coerce_dbl <- function(strict x) coerce(x, "double")
+coerce_chr <- function(strict x) coerce(x, "character")
+coerce_raw <- function(strict x) coerce(x, "raw")
