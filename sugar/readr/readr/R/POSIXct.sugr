@@ -1,3 +1,0 @@
-POSIXct <- function(strict x, strict tz = "UTC") {
-  structure(x, class = c("POSIXct", "POSIXt"), tzone = tz)
-}

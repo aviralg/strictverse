@@ -4,14 +4,14 @@ collectorGuess <- function(input, locale_, guessInteger) {
     force(input)
     force(locale_)
     force(guessInteger)
-  .Call("_readr_collectorGuess", input, locale_, guessInteger, PACKAGE = "readr")
+  .Call(`_readr_collectorGuess`, input, locale_, guessInteger)
 }
 
 read_connection_ <- function(con, filename, chunk_size) {
     force(con)
     force(filename)
     force(chunk_size)
-  .Call("_readr_read_connection_", con, filename, chunk_size, PACKAGE = "readr")
+  .Call(`_readr_read_connection_`, con, filename, chunk_size)
 }
 
 utctime_ <- function(year, month, day, hour, min, sec, psec) {
@@ -22,32 +22,32 @@ utctime_ <- function(year, month, day, hour, min, sec, psec) {
     force(min)
     force(sec)
     force(psec)
-  .Call("_readr_utctime_", year, month, day, hour, min, sec, psec, PACKAGE = "readr")
+  .Call(`_readr_utctime_`, year, month, day, hour, min, sec, psec)
 }
 
 dim_tokens_ <- function(sourceSpec, tokenizerSpec) {
-  .Call("_readr_dim_tokens_", sourceSpec, tokenizerSpec, PACKAGE = "readr")
+  .Call(`_readr_dim_tokens_`, sourceSpec, tokenizerSpec)
 }
 
 count_fields_ <- function(sourceSpec, tokenizerSpec, n_max) {
     force(sourceSpec)
     force(tokenizerSpec)
     force(n_max)
-  .Call("_readr_count_fields_", sourceSpec, tokenizerSpec, n_max, PACKAGE = "readr")
+  .Call(`_readr_count_fields_`, sourceSpec, tokenizerSpec, n_max)
 }
 
 guess_header_ <- function(sourceSpec, tokenizerSpec, locale_) {
     force(sourceSpec)
     force(tokenizerSpec)
     force(locale_)
-  .Call("_readr_guess_header_", sourceSpec, tokenizerSpec, locale_, PACKAGE = "readr")
+  .Call(`_readr_guess_header_`, sourceSpec, tokenizerSpec, locale_)
 }
 
 tokenize_ <- function(sourceSpec, tokenizerSpec, n_max) {
     force(sourceSpec)
     force(tokenizerSpec)
     force(n_max)
-  .Call("_readr_tokenize_", sourceSpec, tokenizerSpec, n_max, PACKAGE = "readr")
+  .Call(`_readr_tokenize_`, sourceSpec, tokenizerSpec, n_max)
 }
 
 parse_vector_ <- function(x, collectorSpec, locale_, na, trim_ws) {
@@ -55,18 +55,18 @@ parse_vector_ <- function(x, collectorSpec, locale_, na, trim_ws) {
     force(collectorSpec)
     force(na)
     force(trim_ws)
-  .Call("_readr_parse_vector_", x, collectorSpec, locale_, na, trim_ws, PACKAGE = "readr")
+  .Call(`_readr_parse_vector_`, x, collectorSpec, locale_, na, trim_ws)
 }
 
 read_file_ <- function(sourceSpec, locale_) {
     force(sourceSpec)
     force(locale_)
-  .Call("_readr_read_file_", sourceSpec, locale_, PACKAGE = "readr")
+  .Call(`_readr_read_file_`, sourceSpec, locale_)
 }
 
 read_file_raw_ <- function(sourceSpec) {
     force(sourceSpec)
-  .Call("_readr_read_file_raw_", sourceSpec, PACKAGE = "readr")
+  .Call(`_readr_read_file_raw_`, sourceSpec)
 }
 
 read_lines_ <- function(sourceSpec, locale_, na, n_max, skip_empty_rows, progress) {
@@ -76,7 +76,7 @@ read_lines_ <- function(sourceSpec, locale_, na, n_max, skip_empty_rows, progres
     force(n_max)
     force(skip_empty_rows)
     force(progress)
-  .Call("_readr_read_lines_", sourceSpec, locale_, na, n_max, skip_empty_rows, progress, PACKAGE = "readr")
+  .Call(`_readr_read_lines_`, sourceSpec, locale_, na, n_max, skip_empty_rows, progress)
 }
 
 read_lines_chunked_ <- function(sourceSpec, locale_, na, chunkSize, callback, skip_empty_rows, progress) {
@@ -86,14 +86,14 @@ read_lines_chunked_ <- function(sourceSpec, locale_, na, chunkSize, callback, sk
     force(callback)
     force(skip_empty_rows)
     force(progress)
-  invisible(.Call("_readr_read_lines_chunked_", sourceSpec, locale_, na, chunkSize, callback, skip_empty_rows, progress, PACKAGE = "readr"))
+  invisible(.Call(`_readr_read_lines_chunked_`, sourceSpec, locale_, na, chunkSize, callback, skip_empty_rows, progress))
 }
 
 read_lines_raw_ <- function(sourceSpec, n_max, progress) {
     force(sourceSpec)
     force(n_max)
     force(progress)
-  .Call("_readr_read_lines_raw_", sourceSpec, n_max, progress, PACKAGE = "readr")
+  .Call(`_readr_read_lines_raw_`, sourceSpec, n_max, progress)
 }
 
 read_lines_raw_chunked_ <- function(sourceSpec, chunkSize, callback, progress) {
@@ -101,7 +101,7 @@ read_lines_raw_chunked_ <- function(sourceSpec, chunkSize, callback, progress) {
     force(chunkSize)
     force(callback)
     force(progress)
-  invisible(.Call("_readr_read_lines_raw_chunked_", sourceSpec, chunkSize, callback, progress, PACKAGE = "readr"))
+  invisible(.Call(`_readr_read_lines_raw_chunked_`, sourceSpec, chunkSize, callback, progress))
 }
 
 read_tokens_ <- function(sourceSpec, tokenizerSpec, colSpecs, colNames, locale_, n_max, progress) {
@@ -112,7 +112,7 @@ read_tokens_ <- function(sourceSpec, tokenizerSpec, colSpecs, colNames, locale_,
     force(locale_)
     force(n_max)
     force(progress)
-  .Call("_readr_read_tokens_", sourceSpec, tokenizerSpec, colSpecs, colNames, locale_, n_max, progress, PACKAGE = "readr")
+  .Call(`_readr_read_tokens_`, sourceSpec, tokenizerSpec, colSpecs, colNames, locale_, n_max, progress)
 }
 
 read_tokens_chunked_ <- function(sourceSpec, callback, chunkSize, tokenizerSpec, colSpecs, colNames, locale_, progress) {
@@ -124,7 +124,7 @@ read_tokens_chunked_ <- function(sourceSpec, callback, chunkSize, tokenizerSpec,
     force(colNames)
     force(locale_)
     force(progress)
-  invisible(.Call("_readr_read_tokens_chunked_", sourceSpec, callback, chunkSize, tokenizerSpec, colSpecs, colNames, locale_, progress, PACKAGE = "readr"))
+  invisible(.Call(`_readr_read_tokens_chunked_`, sourceSpec, callback, chunkSize, tokenizerSpec, colSpecs, colNames, locale_, progress))
 }
 
 melt_tokens_ <- function(sourceSpec, tokenizerSpec, colSpecs, locale_, n_max, progress) {
@@ -134,7 +134,7 @@ melt_tokens_ <- function(sourceSpec, tokenizerSpec, colSpecs, locale_, n_max, pr
     force(locale_)
     force(n_max)
     force(progress)
-  .Call("_readr_melt_tokens_", sourceSpec, tokenizerSpec, colSpecs, locale_, n_max, progress, PACKAGE = "readr")
+  .Call(`_readr_melt_tokens_`, sourceSpec, tokenizerSpec, colSpecs, locale_, n_max, progress)
 }
 
 melt_tokens_chunked_ <- function(sourceSpec, callback, chunkSize, tokenizerSpec, colSpecs, locale_, progress) {
@@ -145,7 +145,7 @@ melt_tokens_chunked_ <- function(sourceSpec, callback, chunkSize, tokenizerSpec,
     force(colSpecs)
     force(locale_)
     force(progress)
-  invisible(.Call("_readr_melt_tokens_chunked_", sourceSpec, callback, chunkSize, tokenizerSpec, colSpecs, locale_, progress, PACKAGE = "readr"))
+  invisible(.Call(`_readr_melt_tokens_chunked_`, sourceSpec, callback, chunkSize, tokenizerSpec, colSpecs, locale_, progress))
 }
 
 guess_types_ <- function(sourceSpec, tokenizerSpec, locale_, n) {
@@ -153,13 +153,13 @@ guess_types_ <- function(sourceSpec, tokenizerSpec, locale_, n) {
     force(tokenizerSpec)
     force(locale_)
     force(n)
-  .Call("_readr_guess_types_", sourceSpec, tokenizerSpec, locale_, n, PACKAGE = "readr")
+  .Call(`_readr_guess_types_`, sourceSpec, tokenizerSpec, locale_, n)
 }
 
 whitespaceColumns <- function(sourceSpec, n, comment) {
     force(sourceSpec)
     force(comment)
-  .Call("_readr_whitespaceColumns", sourceSpec, n, comment, PACKAGE = "readr")
+  .Call(`_readr_whitespaceColumns`, sourceSpec, n, comment)
 }
 
 type_convert_col <- function(x, spec, locale_, col, na, trim_ws) {
@@ -169,7 +169,34 @@ type_convert_col <- function(x, spec, locale_, col, na, trim_ws) {
     force(col)
     force(na)
     force(trim_ws)
-  .Call("_readr_type_convert_col", x, spec, locale_, col, na, trim_ws, PACKAGE = "readr")
+  .Call(`_readr_type_convert_col`, x, spec, locale_, col, na, trim_ws)
+}
+
+write_lines_ <- function(lines, connection, na, sep) {
+    force(lines)
+    force(connection)
+    force(na)
+    force(sep)
+  invisible(.Call(`_readr_write_lines_`, lines, connection, na, sep))
+}
+
+write_lines_raw_ <- function(x, connection, sep) {
+    force(x)
+    force(connection)
+    force(sep)
+  invisible(.Call(`_readr_write_lines_raw_`, x, connection, sep))
+}
+
+write_file_ <- function(x, connection) {
+    force(x)
+    force(connection)
+  invisible(.Call(`_readr_write_file_`, x, connection))
+}
+
+write_file_raw_ <- function(x, connection) {
+    force(x)
+    force(connection)
+  invisible(.Call(`_readr_write_file_raw_`, x, connection))
 }
 
 stream_delim_ <- function(df, connection, delim, na, col_names, bom, quote_escape, eol) {
@@ -180,32 +207,5 @@ stream_delim_ <- function(df, connection, delim, na, col_names, bom, quote_escap
     force(bom)
     force(quote_escape)
     force(eol)
-  .Call("_readr_stream_delim_", df, connection, delim, na, col_names, bom, quote_escape, eol, PACKAGE = "readr")
-}
-
-write_lines_ <- function(lines, connection, na, sep) {
-    force(lines)
-    force(connection)
-    force(na)
-    force(sep)
-  invisible(.Call("_readr_write_lines_", lines, connection, na, sep, PACKAGE = "readr"))
-}
-
-write_lines_raw_ <- function(x, connection, sep) {
-    force(x)
-    force(connection)
-    force(sep)
-  invisible(.Call("_readr_write_lines_raw_", x, connection, sep, PACKAGE = "readr"))
-}
-
-write_file_ <- function(x, connection) {
-    force(x)
-    force(connection)
-  invisible(.Call("_readr_write_file_", x, connection, PACKAGE = "readr"))
-}
-
-write_file_raw_ <- function(x, connection) {
-    force(x)
-    force(connection)
-  invisible(.Call("_readr_write_file_raw_", x, connection, PACKAGE = "readr"))
+  .Call(`_readr_stream_delim_`, df, connection, delim, na, col_names, bom, quote_escape, eol)
 }

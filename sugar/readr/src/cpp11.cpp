@@ -155,13 +155,6 @@ extern "C" SEXP _readr_type_convert_col(SEXP x, SEXP spec, SEXP locale_, SEXP co
     return cpp11::as_sexp(type_convert_col(cpp11::as_cpp<cpp11::decay_t<cpp11::strings>>(x), cpp11::as_cpp<cpp11::decay_t<cpp11::list>>(spec), cpp11::as_cpp<cpp11::decay_t<cpp11::list>>(locale_), cpp11::as_cpp<cpp11::decay_t<int>>(col), cpp11::as_cpp<cpp11::decay_t<const std::vector<std::string>&>>(na), cpp11::as_cpp<cpp11::decay_t<bool>>(trim_ws)));
   END_CPP11
 }
-// write_delim.cpp
-std::string stream_delim_(const cpp11::list& df, cpp11::sexp connection, char delim, const std::string& na, bool col_names, bool bom, int quote_escape, const char* eol);
-extern "C" SEXP _readr_stream_delim_(SEXP df, SEXP connection, SEXP delim, SEXP na, SEXP col_names, SEXP bom, SEXP quote_escape, SEXP eol) {
-  BEGIN_CPP11
-    return cpp11::as_sexp(stream_delim_(cpp11::as_cpp<cpp11::decay_t<const cpp11::list&>>(df), cpp11::as_cpp<cpp11::decay_t<cpp11::sexp>>(connection), cpp11::as_cpp<cpp11::decay_t<char>>(delim), cpp11::as_cpp<cpp11::decay_t<const std::string&>>(na), cpp11::as_cpp<cpp11::decay_t<bool>>(col_names), cpp11::as_cpp<cpp11::decay_t<bool>>(bom), cpp11::as_cpp<cpp11::decay_t<int>>(quote_escape), cpp11::as_cpp<cpp11::decay_t<const char*>>(eol)));
-  END_CPP11
-}
 // write.cpp
 void write_lines_(cpp11::strings lines, cpp11::sexp connection, const std::string& na, const std::string& sep);
 extern "C" SEXP _readr_write_lines_(SEXP lines, SEXP connection, SEXP na, SEXP sep) {
@@ -192,6 +185,13 @@ extern "C" SEXP _readr_write_file_raw_(SEXP x, SEXP connection) {
   BEGIN_CPP11
     write_file_raw_(cpp11::as_cpp<cpp11::decay_t<cpp11::raws>>(x), cpp11::as_cpp<cpp11::decay_t<cpp11::sexp>>(connection));
     return R_NilValue;
+  END_CPP11
+}
+// write_delim.cpp
+std::string stream_delim_(const cpp11::list& df, cpp11::sexp connection, char delim, const std::string& na, bool col_names, bool bom, int quote_escape, const char* eol);
+extern "C" SEXP _readr_stream_delim_(SEXP df, SEXP connection, SEXP delim, SEXP na, SEXP col_names, SEXP bom, SEXP quote_escape, SEXP eol) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(stream_delim_(cpp11::as_cpp<cpp11::decay_t<const cpp11::list&>>(df), cpp11::as_cpp<cpp11::decay_t<cpp11::sexp>>(connection), cpp11::as_cpp<cpp11::decay_t<char>>(delim), cpp11::as_cpp<cpp11::decay_t<const std::string&>>(na), cpp11::as_cpp<cpp11::decay_t<bool>>(col_names), cpp11::as_cpp<cpp11::decay_t<bool>>(bom), cpp11::as_cpp<cpp11::decay_t<int>>(quote_escape), cpp11::as_cpp<cpp11::decay_t<const char*>>(eol)));
   END_CPP11
 }
 
@@ -258,4 +258,5 @@ static const R_CallMethodDef CallEntries[] = {
 extern "C" void R_init_readr(DllInfo* dll){
   R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
   R_useDynamicSymbols(dll, FALSE);
+  R_forceSymbols(dll, TRUE);
 }
