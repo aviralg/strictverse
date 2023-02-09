@@ -3,6 +3,7 @@ library(fs)
 library(purrr)
 library(stringr)
 library(magrittr)
+library(readr)
 
 ################################################################################
 ## signature
