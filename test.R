@@ -15,7 +15,9 @@ test_package <- function(dir) {
 
 test_result_to_df <- function(results) {
 
-    check_null <- function(val) if (is.null(val)) NA_character_ else val
+  check_null <- function(val) if (is.null(val)) NA_character_ else val
+
+  rbind_list <- function(dfs) do.call("rbind", dfs)
 
     dfs <- Map(function(result) {
         file <- result$file
@@ -45,7 +47,7 @@ test_result_to_df <- function(results) {
 
                 data.frame(file = check_null(file),
                            context = check_null(context),
-                           index = index
+                           index = index,
                            message = check_null(message),
                                         #srcref = srcref,
                                         #first_line = first_line,
@@ -61,11 +63,13 @@ test_result_to_df <- function(results) {
             },
             result$results)
 
-        rbind(dfs)
+        rbind_list(dfs)
     },
     results)
 
-    rbind(dfs)
+  df <- rbind_list(dfs)
+
+  df
 }
 
 test <- function(pkg_dir, res_file) {
